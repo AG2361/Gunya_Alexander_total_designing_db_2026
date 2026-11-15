@@ -1,0 +1,643 @@
+Pager usage is off.
+Null display is "(null)".
+SET
+##### ENV
+    who    |                               pg_version                                |  run_date  
+-----------+-------------------------------------------------------------------------+------------
+ inspector | PostgreSQL 17.2 on x86_64-windows, compiled by msvc-19.41.34123, 64-bit | 2026-11-15
+(1 row)
+
+##### A.2
+SET
+SET
+ current_user 
+--------------
+ inspector
+(1 row)
+
+##### B.1
+ schema_name 
+-------------
+ gunya_food
+(1 row)
+
+##### B.2
+  extname  | schema 
+-----------+--------
+ uuid-ossp | exts
+(1 row)
+
+##### B.3
+    table_name    
+------------------
+ address
+ client
+ client_address
+ courier
+ courier_pay
+ order
+ order_structure
+ payment
+ product
+ product_category
+ restaurant
+ review
+(12 rows)
+
+##### B.4
+ table_name |  column_name   |     data_type     
+------------+----------------+-------------------
+ payment    | transaction_id | character varying
+(1 row)
+
+##### B.5
+      typname       |                     values                      
+--------------------+-------------------------------------------------
+ courier_status     | {свободен,занят,на_доставке,уволен}
+ order_pay_status   | {ожидает,оплачен,ошибка}
+ order_status       | {создан,готовится,в_доставке,доставлен,отменён}
+ payment_status     | {успех,ошибка,в_обработке}
+ payment_type       | {карта,наличные,безнал}
+ product_status     | {доступно,нет_в_наличии,архив}
+ restaurant_status  | {активен,неактивен}
+ review_entity_type | {блюдо,ресторан,заказ}
+(8 rows)
+
+##### B.6
+          conname           |       tbl       |       ref        
+----------------------------+-----------------+------------------
+ client_address_address_fk  | client_address  | address
+ client_address_client_fk   | client_address  | client
+ courier_pay_courier_fk     | courier_pay     | courier
+ order_address_fk           | "order"         | address
+ order_client_address_fk    | "order"         | client_address
+ order_client_fk            | "order"         | client
+ order_courier_fk           | "order"         | courier
+ order_restaurant_fk        | "order"         | restaurant
+ order_structure_order_fk   | order_structure | "order"
+ order_structure_product_fk | order_structure | product
+ payment_order_amount_fk    | payment         | "order"
+ product_category_fk        | product         | product_category
+ product_restaurant_fk      | product         | restaurant
+ restaurant_address_fk      | restaurant      | address
+ review_client_fk           | review          | client
+ review_order_fk            | review          | "order"
+(16 rows)
+
+##### B.7
+ len |             password             
+-----+----------------------------------
+  32 | f1ccbc9d1b6042d24b8fb5fd5e4af9a0
+  32 | 5a49e580c51947748df50dd6c61d08b8
+  32 | 290f79af73562c2c52bf70d5993db928
+  32 | 74a802bf088c6ef7ce2f24c2cc33e1de
+  32 | da3aeb9707bbcf84b4bb01d03ad01df9
+(5 rows)
+
+##### C.1
+CALL
+##### C.2
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+psql:db/tests_run.sql:41: ЗАМЕЧАНИЕ:  схема "pg_temp" не существует, пропускается
+CALL
+##### C.3
+       tbl        | count 
+------------------+-------
+ address          |    50
+ client           |    10
+ courier          |    10
+ order            |    50
+ payment          |    50
+ product          |    50
+ product_category |    10
+ restaurant       |    10
+ review           |    50
+(9 rows)
+
+##### C.4
+         cat          | count 
+----------------------+-------
+ restaurant addresses |    10
+ total addresses      |    50
+(2 rows)
+
+##### C.5
+ count 
+-------
+     0
+(1 row)
+
+##### C.6
+ count 
+-------
+     0
+(1 row)
+
+##### C.7
+ count 
+-------
+     7
+(1 row)
+
+##### C.8
+ rows_checked | mismatches 
+--------------+------------
+           60 |          0
+(1 row)
+
+##### C.9
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:80: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+DO
+ clients_after_10_calls 
+------------------------
+                    110
+(1 row)
+
+##### C.9 reset: erase + insert(10) для чистых чисел дальше
+CALL
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:84: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+CALL
+##### D.1
+             fk             | orphans 
+----------------------------+---------
+ order_structure -> order   |       0
+ order_structure -> product |       0
+ payment -> order           |       0
+ review -> order            |       0
+ courier_pay -> courier     |       0
+ client_address -> client   |       0
+ client_address -> address  |       0
+(7 rows)
+
+##### D.2
+ count 
+-------
+     0
+(1 row)
+
+##### D.3
+ count 
+-------
+     0
+(1 row)
+
+##### D.4
+ count 
+-------
+     0
+(1 row)
+
+##### D.5
+ count 
+-------
+     0
+(1 row)
+
+##### D.6
+ count 
+-------
+     0
+(1 row)
+
+##### D.7
+ count 
+-------
+     0
+(1 row)
+
+##### D.8
+ order_id | cnt 
+----------+-----
+(0 rows)
+
+##### D.9
+ count 
+-------
+     0
+(1 row)
+
+##### D.10
+ client_id | address_id | count 
+-----------+------------+-------
+(0 rows)
+
+##### D.11
+ order_id | product_id | count 
+----------+------------+-------
+(0 rows)
+
+##### D.12
+ count 
+-------
+     0
+(1 row)
+
+##### D.13
+ count 
+-------
+     0
+(1 row)
+
+##### D.14
+ rows_checked | mismatches 
+--------------+------------
+           14 |          0
+(1 row)
+
+##### E.1
+psql:db/tests_run.sql:143: ЗАМЕЧАНИЕ:  E.1: before=50, after=51
+DO
+##### E.2
+psql:db/tests_run.sql:158: ЗАМЕЧАНИЕ:  E.2: ошибка получена: add_product: ресторан с id 00000000-0000-0000-0000-000000000000 не существует
+DO
+##### E.3 + E.4 (update и delete существующего отзыва на блюдо)
+psql:db/tests_run.sql:176: ЗАМЕЧАНИЕ:  E.3: rating до=5.00, после update=5.00, avg по отзывам=5.00
+psql:db/tests_run.sql:176: ЗАМЕЧАНИЕ:  E.4: rating после delete=<NULL>, avg по оставшимся отзывам=<NULL>
+DO
+##### E.5
+  restaurant_name  | best_product_name | total_amount | avg_amount |       best_user       
+-------------------+-------------------+--------------+------------+-----------------------
+ Ресторан 1fd66d5e | Блюдо 3e6a131c    |     35329.94 |    5047.13 | user_0fb82561e9a29410
+ Ресторан 5369abc9 | Блюдо 1dbda432    |     19443.55 |    4860.89 | user_41ad9b45ca3c81ee
+ Ресторан 549a7b08 | (null)            |            0 |          0 | (null)
+ Ресторан 6980fb4d | (null)            |            0 |          0 | (null)
+ Ресторан 720e4348 | Блюдо d782963a    |     29873.08 |    4978.85 | user_922e8e4ff65540c7
+ Ресторан 792d8fd1 | Блюдо aa5a909f    |     35897.89 |    7179.58 | user_707d5a20f532d143
+ Ресторан a2fc8e02 | Блюдо e896405b    |      7803.13 |    7803.13 | user_dfb942f55bd6baa2
+ Ресторан a96a1673 | Блюдо 2760861b    |     17765.39 |    4441.35 | user_3ace52e1066d6755
+ Ресторан e51e85fd | Блюдо ed759f4f    |      7651.15 |    7651.15 | user_0fb82561e9a29410
+ Ресторан e9e0ee43 | Блюдо 3acf8e80    |      5739.27 |    5739.27 | user_dfb942f55bd6baa2
+(10 rows)
+
+##### E.6 до
+              courier_id              | coefficient |   status    
+--------------------------------------+-------------+-------------
+ 36a9d1e8-2069-43f5-bd76-f5eadd0c5c1d |         0.1 | свободен
+ 3a15d374-fbdb-4955-818b-39b23ff2f90e |         0.1 | на_доставке
+ 44e5acb0-6186-409a-b3a4-f9a5b31139c8 |         0.1 | уволен
+ 4dbb991d-c0f2-42f1-bebd-b8a3f963dc9f |         0.1 | занят
+ 53704a7a-8e0d-4a29-9132-6c339597b986 |         0.1 | на_доставке
+ 60bc19d8-e075-4bd7-a858-4d47fb812113 |         0.1 | занят
+ 6240b9ea-6d5d-4469-80cd-5b8558e74e46 |         0.1 | свободен
+ b84d85c4-4ee3-4ca1-892f-bfa0a4ae38ad |         0.1 | на_доставке
+ e5128f65-152d-49bb-a9ae-39a13b5eaeea |         0.1 | уволен
+ ed64867e-a282-43d4-abc0-fc58b1714799 |         0.1 | занят
+(10 rows)
+
+CALL
+##### E.6 после
+              courier_id              | coefficient |   status    
+--------------------------------------+-------------+-------------
+ 36a9d1e8-2069-43f5-bd76-f5eadd0c5c1d |         0.1 | свободен
+ 3a15d374-fbdb-4955-818b-39b23ff2f90e |         0.1 | на_доставке
+ 44e5acb0-6186-409a-b3a4-f9a5b31139c8 |         0.1 | уволен
+ 4dbb991d-c0f2-42f1-bebd-b8a3f963dc9f |         0.1 | занят
+ 53704a7a-8e0d-4a29-9132-6c339597b986 |         0.1 | на_доставке
+ 60bc19d8-e075-4bd7-a858-4d47fb812113 |         0.1 | занят
+ 6240b9ea-6d5d-4469-80cd-5b8558e74e46 |         0.1 | свободен
+ b84d85c4-4ee3-4ca1-892f-bfa0a4ae38ad |         0.1 | на_доставке
+ e5128f65-152d-49bb-a9ae-39a13b5eaeea |         0.1 | уволен
+ ed64867e-a282-43d4-abc0-fc58b1714799 |         0.1 | занят
+(10 rows)
+
+ year | month |              courier_id              | amount | coefficient_used 
+------+-------+--------------------------------------+--------+------------------
+ 2026 |    11 | 36a9d1e8-2069-43f5-bd76-f5eadd0c5c1d |  82.58 |              0.1
+ 2026 |    11 | 3a15d374-fbdb-4955-818b-39b23ff2f90e |   0.00 |              0.1
+ 2026 |    11 | 44e5acb0-6186-409a-b3a4-f9a5b31139c8 |   0.00 |              0.1
+ 2026 |    11 | 4dbb991d-c0f2-42f1-bebd-b8a3f963dc9f |   0.00 |              0.1
+ 2026 |    11 | 53704a7a-8e0d-4a29-9132-6c339597b986 |  39.32 |              0.1
+ 2026 |    11 | 60bc19d8-e075-4bd7-a858-4d47fb812113 |   0.00 |              0.1
+ 2026 |    11 | 6240b9ea-6d5d-4469-80cd-5b8558e74e46 |  57.03 |              0.1
+ 2026 |    11 | b84d85c4-4ee3-4ca1-892f-bfa0a4ae38ad |   0.00 |              0.1
+ 2026 |    11 | e5128f65-152d-49bb-a9ae-39a13b5eaeea |   0.00 |              0.1
+ 2026 |    11 | ed64867e-a282-43d4-abc0-fc58b1714799 |   0.00 |              0.1
+ 2026 |    10 | 36a9d1e8-2069-43f5-bd76-f5eadd0c5c1d |   0.00 |              0.1
+ 2026 |    10 | 3a15d374-fbdb-4955-818b-39b23ff2f90e |  50.92 |              0.1
+ 2026 |    10 | 44e5acb0-6186-409a-b3a4-f9a5b31139c8 |   0.00 |              0.1
+ 2026 |    10 | 4dbb991d-c0f2-42f1-bebd-b8a3f963dc9f |  25.23 |              0.1
+ 2026 |    10 | 53704a7a-8e0d-4a29-9132-6c339597b986 |  32.83 |              0.1
+ 2026 |    10 | 60bc19d8-e075-4bd7-a858-4d47fb812113 | 106.13 |              0.1
+ 2026 |    10 | 6240b9ea-6d5d-4469-80cd-5b8558e74e46 |  44.75 |              0.1
+ 2026 |    10 | b84d85c4-4ee3-4ca1-892f-bfa0a4ae38ad |  30.83 |              0.1
+ 2026 |    10 | e5128f65-152d-49bb-a9ae-39a13b5eaeea |   0.00 |              0.1
+ 2026 |    10 | ed64867e-a282-43d4-abc0-fc58b1714799 |   0.00 |              0.1
+(20 rows)
+
+##### E.7
+ before_cnt 
+------------
+         60
+(1 row)
+
+CALL
+ after_cnt 
+-----------
+        60
+(1 row)
+
+##### F.1
+     column_name     | data_type 
+---------------------+-----------
+ year_month          | text
+ sum_no_commission   | numeric
+ sum_with_commission | numeric
+ commission          | numeric
+ prev_commission     | numeric
+ commission_diff     | numeric
+ courier_pay         | numeric
+ net_profit          | numeric
+(8 rows)
+
+##### F.2
+ year_month | sum_no_commission | sum_with_commission | commission | prev_commission | commission_diff | courier_pay | net_profit 
+------------+-------------------+---------------------+------------+-----------------+-----------------+-------------+------------
+ 2026-06    |          20304.00 |            22334.40 |    2030.40 |          (null) |          (null) |      203.05 |    1827.35
+ 2026-07    |          56784.40 |            62462.83 |    5678.43 |         2030.40 |         3648.03 |      567.84 |    5110.59
+ 2026-08    |           8145.40 |             8959.94 |     814.54 |         5678.43 |        -4863.89 |       81.45 |     733.09
+ 2026-09    |          12808.58 |            14089.44 |    1280.86 |          814.54 |          466.32 |      128.09 |    1152.77
+ 2026-10    |          29067.47 |            31974.23 |    2906.76 |         1280.86 |         1625.90 |      290.69 |    2616.07
+ 2026-11    |          17893.24 |            19682.56 |    1789.32 |         2906.76 |        -1117.44 |      178.93 |    1610.39
+(6 rows)
+
+##### F.3
+ year_month 
+------------
+(0 rows)
+
+##### F.4 (проверка формул)
+ rows_checked | bad_formulas | null_prev_rows 
+--------------+--------------+----------------
+            6 |            0 |              1
+(1 row)
+
+##### G.1
+ schema_name | usage | create 
+-------------+-------+--------
+ exts        | t     | f
+ gunya_food  | t     | t
+(2 rows)
+
+##### G.2
+    table_name    |                             privs                             
+------------------+---------------------------------------------------------------
+ address          | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ client           | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ client_address   | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ courier          | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ courier_pay      | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ how_much_money   | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ order            | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ order_structure  | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ payment          | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ product          | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ product_category | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ restaurant       | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ review           | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+(13 rows)
+
+##### G.3
+SET
+ count 
+-------
+    13
+(1 row)
+
+RESET
+##### G.4
+SET
+ count 
+-------
+    12
+(1 row)
+
+RESET
+##### G.5
+SET
+SET
+CALL
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:227: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+CALL
+CALL
+ statistic_rows 
+----------------
+             10
+(1 row)
+
+ year_month | sum_no_commission | sum_with_commission | commission | prev_commission | commission_diff | courier_pay | net_profit 
+------------+-------------------+---------------------+------------+-----------------+-----------------+-------------+------------
+ 2026-06    |          56505.64 |            62156.21 |    5650.57 |          (null) |          (null) |      565.06 |    5085.51
+ 2026-07    |          33218.86 |            36540.75 |    3321.89 |         5650.57 |        -2328.68 |      332.19 |    2989.70
+ 2026-08    |          28520.10 |            31372.12 |    2852.02 |         3321.89 |         -469.87 |      285.21 |    2566.81
+ 2026-09    |          33119.81 |            36431.79 |    3311.98 |         2852.02 |          459.96 |      331.20 |    2980.78
+ 2026-10    |          48955.99 |            53851.58 |    4895.59 |         3311.98 |         1583.61 |      489.55 |    4406.04
+(5 rows)
+
+RESET
+##### H.1
+                                                      QUERY PLAN                                                      
+----------------------------------------------------------------------------------------------------------------------
+ Seq Scan on courier c  (cost=0.00..3746.22 rows=70 width=56) (actual time=0.112..0.586 rows=10 loops=1)
+   SubPlan 1
+     ->  Aggregate  (cost=26.69..26.70 rows=1 width=8) (actual time=0.027..0.027 rows=1 loops=10)
+           ->  Seq Scan on "order" o  (cost=0.00..26.69 rows=1 width=0) (actual time=0.015..0.021 rows=4 loops=10)
+                 Filter: ((courier_id = c.courier_id) AND (status = 'доставлен'::order_status))
+                 Rows Removed by Filter: 46
+   SubPlan 2
+     ->  Aggregate  (cost=26.70..26.71 rows=1 width=32) (actual time=0.026..0.026 rows=1 loops=10)
+           ->  Seq Scan on "order" o_1  (cost=0.00..26.69 rows=1 width=16) (actual time=0.014..0.020 rows=4 loops=10)
+                 Filter: ((courier_id = c.courier_id) AND (status = 'доставлен'::order_status))
+                 Rows Removed by Filter: 46
+ Planning Time: 0.247 ms
+ Execution Time: 0.637 ms
+(13 rows)
+
+##### H.2
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ HashAggregate  (cost=33.61..34.49 rows=70 width=56) (actual time=0.147..0.154 rows=10 loops=1)
+   Group Key: c.courier_id
+   Batches: 1  Memory Usage: 24kB
+   ->  Hash Left Join  (cost=25.11..33.09 rows=70 width=48) (actual time=0.110..0.123 rows=39 loops=1)
+         Hash Cond: (c.courier_id = o.courier_id)
+         ->  Seq Scan on courier c  (cost=0.00..7.70 rows=70 width=16) (actual time=0.034..0.035 rows=10 loops=1)
+         ->  Hash  (cost=25.08..25.08 rows=3 width=48) (actual time=0.069..0.069 rows=35 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 11kB
+               ->  Seq Scan on "order" o  (cost=0.00..25.08 rows=3 width=48) (actual time=0.029..0.046 rows=35 loops=1)
+                     Filter: (status = 'доставлен'::order_status)
+                     Rows Removed by Filter: 15
+ Planning Time: 0.266 ms
+ Execution Time: 0.200 ms
+(13 rows)
+
+##### H.3
+                                                    QUERY PLAN                                                     
+-------------------------------------------------------------------------------------------------------------------
+ Function Scan on get_statistic  (cost=0.25..10.25 rows=1000 width=160) (actual time=2.495..2.496 rows=10 loops=1)
+ Planning Time: 0.025 ms
+ Execution Time: 2.517 ms
+(3 rows)
+
+##### I.1
+CALL
+       tbl        | count 
+------------------+-------
+ client           |     0
+ courier          |     0
+ product_category |     0
+ restaurant       |     0
+ address          |     0
+ product          |     0
+ order            |     0
+ review           |     0
+ payment          |     0
+ order_structure  |     0
+ client_address   |     0
+ courier_pay      |     0
+(12 rows)
+
+##### I.2
+CALL
+##### I.3
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_addr" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_client" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_cat" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_rest" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_courier" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_active" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_prod" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_ord0" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_ord" не существует, пропускается
+psql:db/tests_run.sql:264: ЗАМЕЧАНИЕ:  таблица "tmp_item" не существует, пропускается
+CALL
+ count 
+-------
+    50
+(1 row)
+
+##### END
